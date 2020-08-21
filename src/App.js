@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-
+import InputForm from './Components/InputForm'
 function App() {
   return (
     <div className="App">
-      hello
+      <InputForm />
     </div>
   );
 }
