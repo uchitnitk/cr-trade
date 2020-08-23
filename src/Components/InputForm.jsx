@@ -77,10 +77,10 @@ export default function SignInSide() {
               autoFocus
             />
             <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">Select Card</InputLabel>
+                <InputLabel id="card">Card</InputLabel>
                 <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
+                labelId="card"
+                id="card"
                 // value={age}
                 // onChange={handleChange}
                 label="Card"
