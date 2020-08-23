@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +56,52 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide() {
-  const classes = useStyles();
+    const classes = useStyles();
+    const [submitted,setSubmitted] = useState(false);
+    const [cardsInfo,setCardsInfo] = useState([]);
+
+    var fun = async function()
+    {
+        let authToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjRhNDJjMjFmLTdkMTYtNGU0Ny1hMzVjLWUxZmUzMDM2OTcwNSIsImlhdCI6MTU5ODE2Mzg0NSwic3ViIjoiZGV2ZWxvcGVyL2E0OWMxNzdhLWUzMzgtM2NhNi0zZTc3LTM3OGM1MzBlZTgzNCIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxMDMuMjA0LjE3MC4xOTEiXSwidHlwZSI6ImNsaWVudCJ9XX0.9Zs94THELXNO2UGmQ8ahdVpKZE9PTDCMM1WarihWkXMX3M9JWFNjBOsgC1_8ap4WqhM5_Xsc3I6POkfXEGDeoQ';
+        console.log(authToken)
+        let response = await fetch(`https://api.clashroyale.com/v1/cards`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        });
+        let userData = await response.json()
+        console.log(userData);
+    } 
+    useEffect(() => {
+        // const key = process.env.REACT_APP_API_KEY
+        // console.log(key)
+        // const Config = {
+        //     headers: {
+        //        Authorization: 'Bearer ' + key
+        //     }
+        // }
+        fun();
+        // axios.get(`https://api.clashroyale.com/v1/cards`, { headers: {"Authorization" : `Bearer ${process.env.REACT_APP_API_KEY}`} })
+        // .then((response) => {
+
+        //     console.log(response)
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
+        // fetch(`https://api.clashroyale.com/v1/cards/`, {
+        //     method: 'GET',
+        //     headers: {
+        //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjRhNDJjMjFmLTdkMTYtNGU0Ny1hMzVjLWUxZmUzMDM2OTcwNSIsImlhdCI6MTU5ODE2Mzg0NSwic3ViIjoiZGV2ZWxvcGVyL2E0OWMxNzdhLWUzMzgtM2NhNi0zZTc3LTM3OGM1MzBlZTgzNCIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxMDMuMjA0LjE3MC4xOTEiXSwidHlwZSI6ImNsaWVudCJ9XX0.9Zs94THELXNO2UGmQ8ahdVpKZE9PTDCMM1WarihWkXMX3M9JWFNjBOsgC1_8ap4WqhM5_Xsc3I6POkfXEGDeoQ'
+        //     }
+        // })
+        // .then(results => results.json()) 
+        // .then(jsondata => console.log(jsondata))
+        // .then((error) => {
+        //     console.log(error);
+        // })
+    });
 
   return (
     <Grid container component="main" className={classes.root}>
